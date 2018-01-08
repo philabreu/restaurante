@@ -2,7 +2,7 @@ package modelo;
 
 import java.util.List;
 
-public class Restaurante implements Votavel{
+public class Restaurante implements Votavel {
 
 	private int votos = 0;
 
@@ -15,6 +15,7 @@ public class Restaurante implements Votavel{
 		System.out.println("Restaurante escolhido com sucesso!");
 	}
 
+	/* Itera sobre a lista de restaurantes para contar os votos de cada */
 	public void apurar(List<Restaurante> restaurantes, boolean encerrado) {
 		Restaurante restaurante = new Restaurante();
 
@@ -47,7 +48,8 @@ public class Restaurante implements Votavel{
 
 			System.out.println("Resultado da votação:");
 			for (Restaurante restauranteEscolhido : restaurantes) {
-				System.out.println(restauranteEscolhido.getNome() + " - " + Integer.toString(restauranteEscolhido.getVotos()) + " votos.");
+				System.out.println(restauranteEscolhido.getNome() + " - "
+						+ Integer.toString(restauranteEscolhido.getVotos()) + " votos.");
 			}
 		}
 	}

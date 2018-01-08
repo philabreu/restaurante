@@ -33,6 +33,7 @@ public class App {
 		restaurantes.add(setimo);
 
 		Scanner scanner = new Scanner(System.in);
+		
 
 		while (opcao != 5) {
 
@@ -43,6 +44,7 @@ public class App {
 
 			switch (opcao) {
 
+			/*Votar na lista de restaurantes*/
 			case 1:
 				if (votacaoEncerrada) {
 					System.out.println("Votação de hoje finalizada. Tente amanhã \n");
@@ -80,12 +82,14 @@ public class App {
 
 				break;
 
+				/*Apuração parcial*/
 			case 2:
 				Restaurante parcial = new Restaurante();
 				parcial.apurar(restaurantes, false);
 
 				break;
 
+			/* Encerra votação e apuração final */
 			case 3:
 				Restaurante encerrado = new Restaurante();
 				encerrado.apurar(restaurantes, true);
@@ -93,9 +97,11 @@ public class App {
 
 				break;
 
+				/*Cria uma nova votação*/
 			case 4:
 				votacaoEncerrada = false;
 
+				/* Sai do sistema */
 			case 5:
 				System.out.println("Até mais! \n");
 				break;
