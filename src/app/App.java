@@ -9,11 +9,10 @@ import modelo.Restaurante;
 
 public class App {
 
-	@SuppressWarnings("resource")
-	public static void main(String[] args) {
+	List<Restaurante> restaurantes = new ArrayList<Restaurante>();
+	int opcao = 0;
 
-		int opcao = 0;
-		boolean votacaoEncerrada = false;
+	public void configurar() {
 
 		Restaurante primeiro = new Restaurante("Amado", 0, false);
 		Restaurante segundo = new Restaurante("Paraiso tropical", 0, false);
@@ -23,8 +22,6 @@ public class App {
 		Restaurante sexto = new Restaurante("Rua 15", 0, false);
 		Restaurante setimo = new Restaurante("Marlin pescador", 0, false);
 
-		List<Restaurante> restaurantes = new ArrayList<Restaurante>();
-
 		restaurantes.add(primeiro);
 		restaurantes.add(segundo);
 		restaurantes.add(terceiro);
@@ -32,6 +29,11 @@ public class App {
 		restaurantes.add(quinto);
 		restaurantes.add(sexto);
 		restaurantes.add(setimo);
+	}
+
+	public void jogar() {
+
+		boolean votacaoEncerrada = false;
 
 		Scanner scanner = new Scanner(System.in);
 
@@ -77,7 +79,7 @@ public class App {
 
 							voto = scanner.nextInt();
 
-							if (voto > restaurantes.size()) {
+							if (voto > restaurantes.size()|| voto <= 0) {
 								System.out.println("Digite uma opção de restaurante válida.");
 								continue;
 							}
@@ -118,8 +120,17 @@ public class App {
 					System.out.println("Digite uma opção válida.");
 				}
 			} catch (Exception exception) {
-				throw new InputMismatchException("Digite uma opção de restaurante válida.");
+				throw new InputMismatchException("Digite uma opção válida.");
 			}
 		}
+	}
+
+	@SuppressWarnings("resource")
+	public static void main(String[] args) {
+
+		App app = new App();
+
+		app.configurar();
+		app.jogar();
 	}
 }
