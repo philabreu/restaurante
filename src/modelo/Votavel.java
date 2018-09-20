@@ -1,6 +1,6 @@
 package modelo;
 
-/*Criada para possibilitar qualquer classe que implemente uma votação posteriormente*/
+@FunctionalInterface
 public interface Votavel {
 
 	void votar();

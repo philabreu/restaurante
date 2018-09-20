@@ -9,8 +9,7 @@ import modelo.Restaurante;
 
 public class App {
 
-	List<Restaurante> restaurantes = new ArrayList<Restaurante>();
-	int opcao = 0;
+	List<Restaurante> restaurantes = new ArrayList<>();
 
 	public void configurar() {
 
@@ -35,12 +34,14 @@ public class App {
 
 		boolean votacaoEncerrada = false;
 
+		int opcao = 0;
+
 		Scanner scanner = new Scanner(System.in);
 
 		while (opcao != 5) {
 
 			System.out.println(
-					"O que deseja fazer? \n \n1 - Votar\n2 - Resultado parcial\n3 - Encerrar votação\n4 - Nova votação\n5 - Sair");
+					"\n O que deseja fazer? \n \n1 - Votar\n2 - Resultado parcial\n3 - Encerrar votação\n4 - Nova votação\n5 - Sair");
 
 			try {
 
@@ -48,38 +49,37 @@ public class App {
 
 				switch (opcao) {
 
-				/* Votar na lista de restaurantes */
 				case 1:
 					if (votacaoEncerrada) {
-						System.out.println("Votação de hoje finalizada. Tente amanhã \n");
+						System.out.println("\n Votação de hoje finalizada. Tente amanhã \n");
 					} else {
 
 						int voto = 0;
 						ArrayList<Restaurante> listaRestaurantes = new ArrayList<Restaurante>();
 
-						System.out.println("Selecione um restaurante da nossa rede:");
-						for (Restaurante restaurante : restaurantes) {
+						System.out.println("\n Selecione um restaurante da nossa rede:");
 
+						restaurantes.forEach(restaurante -> {
 							if (!restaurante.getEscolhido()) {
 								listaRestaurantes.add(restaurante);
 							} else {
-								System.out.println("Não é possivel mais votar.");
+								System.out.println("Não é possivel mais votar. \n");
 							}
-						}
+						});
 
 						restaurantes = (List<Restaurante>) listaRestaurantes.clone();
 
 						for (int contador = 0; contador <= restaurantes.size() - 1; contador++) {
 
-							System.out.println(Integer.toString(++contador) + " - "
-									+ restaurantes.get(--contador).getNome());
+							System.out.println(
+									Integer.toString(++contador) + " - " + restaurantes.get(--contador).getNome());
 						}
 
 						try {
 
 							voto = scanner.nextInt();
 
-							if (voto > restaurantes.size()|| voto <= 0) {
+							if (voto > restaurantes.size() || voto <= 0) {
 								System.out.println("Digite uma opção de restaurante válida.");
 								continue;
 							}
@@ -91,14 +91,12 @@ public class App {
 
 					break;
 
-				/* Apuração parcial */
 				case 2:
 					Restaurante parcial = new Restaurante();
 					parcial.apurar(restaurantes, false);
 
 					break;
 
-				/* Encerra votação e apuração final */
 				case 3:
 					Restaurante encerrado = new Restaurante();
 					encerrado.apurar(restaurantes, true);
@@ -106,21 +104,19 @@ public class App {
 
 					break;
 
-				/* Cria uma nova votação */
 				case 4:
 					votacaoEncerrada = false;
 
-					/* Sai do sistema */
 				case 5:
 					System.out.println("Até mais! \n");
 					break;
 
 				default:
 
-					System.out.println("Digite uma opção válida.");
+					System.out.println("\n Digite uma opção válida.");
 				}
 			} catch (Exception exception) {
-				throw new InputMismatchException("Digite uma opção válida.");
+				throw new InputMismatchException("\n Digite uma opção válida.");
 			}
 		}
 	}

@@ -46,11 +46,12 @@ public class Restaurante implements Votavel {
 			System.out.println("Votação encerrada!");
 		} else {
 
-			System.out.println("Resultado da votação:");
-			for (Restaurante restauranteEscolhido : restaurantes) {
+			System.out.println("Resultado da votação: \n");
+
+			restaurantes.forEach(restauranteEscolhido -> {
 				System.out.println(restauranteEscolhido.getNome() + " - "
 						+ Integer.toString(restauranteEscolhido.getVotos()) + " votos.");
-			}
+			});
 		}
 	}
 
